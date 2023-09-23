@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS dadjokes_db;
+CREATE DATABASE dadjokes_db;
