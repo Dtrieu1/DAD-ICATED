@@ -1,0 +1,12 @@
+img,
+#main_body,
+.card_img {
+    max-width: 100%;
+    border-radius: 20px;
+    padding: 10px;
+    max-height: 100%;
+}
+
+.card {
+    border-radius: 20px;
+}
