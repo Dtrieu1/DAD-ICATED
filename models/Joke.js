@@ -17,6 +17,14 @@ Joke.init(
     joke: {
       type: DataTypes.STRING, // defines the data type for the joke
     },
+    //upvotes
+    upvotes: {
+      type: DataTypes.VIRTUAL,
+    },
+    //downvotes
+    downvotes: {
+      type: DataTypes.VIRTUAL,
+    },
     // user id
     user_id: {
       type: DataTypes.INTEGER,
