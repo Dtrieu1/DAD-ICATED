@@ -12,10 +12,6 @@ router.get("/random", async (req, res) => {
           model: User,
           attribute: ["username"],
         },
-        {
-          model: Vote,
-          attribute: ["vote_value"],
-        },
       ],
       order: Sequelize.literal("rand()"),
       limit: 1,
@@ -44,10 +40,6 @@ router.get("/new", async (req, res) => {
           model: User,
           attribute: ["username"],
         },
-        {
-          model: Vote,
-          attribute: ["vote_value"],
-        },
       ],
       order: [["createdAt", "DESC"]],
     });
@@ -74,12 +66,8 @@ router.get("/top", async (req, res) => {
           model: User,
           attribute: ["username"],
         },
-        {
-          model: Vote,
-          attribute: ["vote_value"],
-        },
       ],
-      order: [{ model: Vote, as: "votes" }, "vote_value", "DESC"],
+      order: ["upvotes", "DESC"],
     });
 
     //serialize
