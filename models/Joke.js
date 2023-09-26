@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
-const User = require("./User"); // Import the User model
+const Vote = require("./Vote"); 
 
 class Joke extends Model {}
 
@@ -19,11 +19,11 @@ Joke.init(
     },
     //upvotes
     upvotes: {
-      type: DataTypes.VIRTUAL,
+      type: DataTypes.INTEGER,
     },
     //downvotes
     downvotes: {
-      type: DataTypes.VIRTUAL,
+      type: DataTypes.INTEGER,
     },
     // user id
     user_id: {
@@ -35,6 +35,13 @@ Joke.init(
     },
   },
   {
+    //hooks
+    hooks: {
+      beforeBulkCreate: async (joke, options) => {
+        joke.upvotes = 0;
+        joke.downvotes = 0;
+      },
+    },
     // sequelize
     sequelize,
     timestamps: true,
@@ -44,9 +51,5 @@ Joke.init(
     modelName: "Joke",
   }
 );
-
-// Joke.belongsTo(User, {
-//     foreignKey: 'user_id',  //c??
-//   });
 
 module.exports = Joke;
