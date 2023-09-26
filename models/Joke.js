@@ -17,10 +17,6 @@ Joke.init(
     joke: {
       type: DataTypes.STRING, // defines the data type for the joke
     },
-    // date created ?
-    date_created: {
-      type: DataTypes.DATE, //defines the data type for the date_created
-    },
     // user id
     user_id: {
       type: DataTypes.INTEGER,
@@ -33,7 +29,8 @@ Joke.init(
   {
     // sequelize
     sequelize,
-    timestamps: false,
+    timestamps: true,
+    createdAt: true,
     freezeTableName: true,
     underscored: true,
     modelName: "Joke",

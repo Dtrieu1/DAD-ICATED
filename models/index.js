@@ -2,26 +2,37 @@ const User = require("./User");
 const Joke = require("./Joke");
 const Vote = require("./Vote");
 
-// user has many jokes
-User.belongsToMany(Joke, {
-  // Define the third table needed to store the foreign keys
-  through: {
-    model: Vote,
-    unique: false, // ???
-  },
-  // Define an alias for when data is retrieved
-  as: "user_joke",
+// user has many joke
+User.hasMany(Joke, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
 });
 
-// joke belongs to user
-Joke.belongsToOne(User, {
-  // Define the third table needed to store the foreign keys
-  through: {
-    model: Vote,
-    unique: false,
-  },
-  // Define an alias for when data is retrieved
-  as: "joke_author",
+// user has one vote
+User.hasOne(Vote, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
+});
+
+// joke has many votes
+Joke.hasMany(Vote, {
+  foreignKey: 'joke_id',
+  onDelete: 'CASCADE'
+});
+
+// joke belong to users
+Joke.belongsTo(User, {
+  foreignKey: 'user_id'
+});
+
+// vote belongs to user
+Vote.belongsTo(User, {
+  foreignKey: 'user_id'
+});
+
+// vote belongs to joke
+Vote.belongsTo(Joke, {
+  foreignKey: 'joke_id'
 });
 
 module.exports = { User, Joke, Vote };

@@ -1,7 +1,5 @@
 // connections
 const router = require("express").Router();
-const { User, Joke } = require("../models");
-// -- security?
 
 // main page get route
 router.get("/", async (req, res) => {
@@ -16,7 +14,7 @@ router.get("/", async (req, res) => {
 
 // login get route
 router.get("/login", (req, res) => {
-  // If the user is already logged in, redirect the request to another route
+  
   if (req.session.logged_in) {
     res.redirect("/");
     return;
