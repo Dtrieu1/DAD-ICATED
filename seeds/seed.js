@@ -1,5 +1,6 @@
 const sequelize = require("../config/connection");
 const { User, Joke, Vote } = require("../models");
+const tallyVotes = require("../utils/tally")
 
 const userData = require("./userData.json");
 const jokeData = require("./jokeData.json");
@@ -36,6 +37,10 @@ const seedDatabase = async () => {
       console.log(err);
     });
   };
+
+  jokes.forEach(async (joke) => {
+    await tallyVotes(joke)
+  })
 
   process.exit(0);
 };
