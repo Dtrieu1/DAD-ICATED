@@ -13,7 +13,7 @@ Vote.init(
       autoIncrement: true,
     },
     // vote value
-    vote_value: {
+    value: {
       type: DataTypes.BOOLEAN,
     },
     // joke id
