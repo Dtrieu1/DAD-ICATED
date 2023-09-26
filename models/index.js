@@ -25,3 +25,15 @@ Joke.belongsToOne(User, {
 });
 
 module.exports = { User, Joke, Vote };
+
+// user has many joke
+
+// user has one vote
+
+// joke has many votes
+
+// joke belong to users
+
+// vote belongs to user
+
+// vote belongs to joke

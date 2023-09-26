@@ -1,6 +1,5 @@
 // connections
 const router = require("express").Router();
-const { User, Joke } = require("../models");
 // -- security?
 
 // main page get route
