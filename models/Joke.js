@@ -19,18 +19,20 @@ Joke.init(
     },
     //upvotes
     upvotes: {
-      allowNull: false,
       type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
     },
     //downvotes
     downvotes: {
-      allowNull: false,
       type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
     },
     // user id
     user_id: {
-      allowNull: false,
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: "user", // should match the model name in the User model
         key: "id", // should match the primary key in the User model
@@ -38,13 +40,6 @@ Joke.init(
     },
   },
   {
-    //hooks
-    hooks: {
-      beforeBulkCreate: async (joke, options) => {
-        joke.upvotes = 0;
-        joke.downvotes = 0;
-      },
-    },
     // sequelize
     sequelize,
     timestamps: true,
