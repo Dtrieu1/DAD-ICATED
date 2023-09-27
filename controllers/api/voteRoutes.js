@@ -3,7 +3,6 @@ const router = require("express").Router();
 const { Joke, Vote } = require("../../models");
 
 // create upvote
-router.get
 // router.post("/up", async (req, res) => {
 //   try {
 //     const newVote = await Vote.create({
