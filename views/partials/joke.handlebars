@@ -1,19 +1,21 @@
 <div class="card border-dark mb-3 jokeCard">
         <div class="card-header{{user.username}}</div>
         <div class="card-body text-dark">
-            <h5 class="card-title">Timestamp:</h5>
+            <h5 class="card-title">{{joke.timestamp}}</h5>
             <p class="card-text">{{joke.joke}}</p>
             {{#if vote.vote_value}}
-            <button type="button" class="btn upChosen">⬆️ Up</button>
-            <button type="button" class="btn">⬇️ Down</button>
+            <div class="arrowArea upChosen"></div>
+                <button type="button" class="btn upChosen">⬆️ Up</button>
+                <button type="button" class="btn">⬇️ Down</button>
             {{#if !vote.vote_value}}
-            <button type="button" class="btn">⬆️ Up</button>
-            <button type="button" class="btn downChosen">⬇️ Down</button>
+            <div class="arrowArea downChosen"></div>
+                <button type="button" class="btn">⬆️ Up</button>
+                <button type="button" class="btn downChosen">⬇️ Down</button>
             {{#else}}
-            <button type="button" class="btn">⬆️ Up</button>
-            <button type="button" class="btn">⬇️ Down</button>
+            <div class="arrowArea"></div>
+                <button type="button" class="btn">⬆️ Up</button>
+                <button type="button" class="btn">⬇️ Down</button>
             {{/if}}
-            <button type="button" class="btn btn-secondary" disabled>Net Score #:</button>
-            <button type="button" class="btn btn-secondary" disabled>Timestamp:</button>
+            <h6 class="card-text">Score: {{tallyVotes joke}}</h6>
         </div>
     </div>
