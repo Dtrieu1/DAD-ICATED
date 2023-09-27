@@ -14,18 +14,22 @@ Joke.init(
     },
     // joke
     joke: {
+      allowNull: false,
       type: DataTypes.STRING, // defines the data type for the joke
     },
     //upvotes
     upvotes: {
+      allowNull: false,
       type: DataTypes.INTEGER,
     },
     //downvotes
     downvotes: {
+      allowNull: false,
       type: DataTypes.INTEGER,
     },
     // user id
     user_id: {
+      allowNull: false,
       type: DataTypes.INTEGER,
       references: {
         model: "user", // should match the model name in the User model
