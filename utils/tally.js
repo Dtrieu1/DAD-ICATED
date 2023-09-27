@@ -1,37 +1,48 @@
 const { Joke, Vote } = require("../models");
 
 const tallyVotes = async (joke) => {
-  // get all votes
-  const votes = await Vote.findAll();
+  // get id of joke
+  const id = joke.dataValues.id;
+  console.log(id);
 
   // get upvotes
   const upvotes = await Vote.count({
-    where: {
-      value: true,
-    },
+    where: [
+      {
+        value: true,
+        joke_id: id,
+      },
+    ],
   });
 
   // get downvotes
   const downvotes = await Vote.count({
-    where: {
-      value: false,
-    },
+    where: [
+      {
+        value: false,
+        joke_id: id,
+      },
+    ],
   });
 
   // update joke with values where ids match
-  joke = await Joke.update(
-    { 
-        upvotes: upvotes,
-        downvotes: downvotes,
+  await Joke.update(
+    {
+      upvotes: upvotes,
+      downvotes: downvotes,
     },
     {
       where: {
-        id: votes.joke_id,
+        id: id,
       },
     }
   );
 
-  return joke;
+  // get the updated joke
+  const updatedJoke = await Joke.findByPk(id);
+
+  console.log(updatedJoke);
+  return updatedJoke;
 };
 
 module.exports = tallyVotes;

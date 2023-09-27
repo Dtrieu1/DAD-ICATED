@@ -1,6 +1,6 @@
 const sequelize = require("../config/connection");
 const { User, Joke, Vote } = require("../models");
-const tallyVotes = require("../utils/tally")
+const tallyVotes = require("../utils/tally");
 
 const userData = require("./userData.json");
 const jokeData = require("./jokeData.json");
@@ -19,7 +19,7 @@ const seedDatabase = async () => {
   // --> will have to manually assign a user_id to each joke in seed data <--
 
   // create votes randomly
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 20; i++) {
     // random joke id
     const { id: randomJokeId } =
       jokes[Math.floor(Math.random() * jokes.length)];
@@ -36,11 +36,13 @@ const seedDatabase = async () => {
       // catch any dup joke_id / user_id pairings
       console.log(err);
     });
-  };
+  }
 
-  jokes.forEach(async (joke) => {
-    await tallyVotes(joke)
-  })
+  // tally votes for all jokes
+  const tallyPromises = jokes.map((joke) => tallyVotes(joke));
+  //return jokes
+  const updatedJokes = await Promise.all(tallyPromises);
+  console.log(updatedJokes);
 
   process.exit(0);
 };
