@@ -15,6 +15,7 @@ Vote.init(
     // vote value
     value: {
       type: DataTypes.BOOLEAN,
+      allowNull: false,
     },
     // joke id
     joke_id: {
@@ -22,6 +23,7 @@ Vote.init(
       references: {
         model: "joke",
         key: "id",
+        allowNull: false,
       },
     },
     // user id
@@ -30,6 +32,7 @@ Vote.init(
       references: {
         model: "user",
         key: "id",
+        allowNull: false,
       },
     },
   },
