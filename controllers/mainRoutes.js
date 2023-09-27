@@ -1,5 +1,6 @@
 // connections
 const router = require("express").Router();
+const { User, Joke } = require("../models");
 
 // main page get route
 router.get("/", async (req, res) => {
