@@ -6,8 +6,6 @@ const { User, Joke, Vote } = require("../../models");
 router.get("/random", async (req, res) => {
   // random user id
   const users = await User.findAll();
-  // console.log(users);
-  // console.log(users[Math.floor(Math.random() * users.length)]);
   const { id: randomUserId } = users[Math.floor(Math.random() * users.length)];
 
   try {
@@ -27,11 +25,11 @@ router.get("/random", async (req, res) => {
     });
 
     //serialize
-    const jokes = jokeData.map((joke) => joke.get({ plain: true }));
+    const joke = jokeData.get({ plain: true });
 
     // pass into template
     res.render("homepage", {
-      jokes,
+      ...joke,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
