@@ -4,29 +4,37 @@ const { User, Joke, Vote } = require("../../models");
 
 // random joke get route
 router.get("/random", async (req, res) => {
+  // random user id
+  const users = await User.findAll();
+  const { id: randomUserId } = users[Math.floor(Math.random() * users.length)];
+
   try {
     // get one random joke, join with user and vote data
-    const jokeData = await Joke.findAll({
+    const jokeData = await Joke.findOne({
+      where: [
+        {
+          user_id: randomUserId,
+        },
+      ],
       include: [
         {
           model: User,
           attribute: ["username"],
         },
       ],
-      order: Sequelize.literal("rand()"),
-      limit: 1,
     });
 
     //serialize
-    const jokes = jokeData.map((joke) => joke.get({ plain: true }));
+    const joke = jokeData.get({ plain: true });
 
     // pass into template
     res.render("homepage", {
-      jokes,
+      ...joke,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
+    console.log(err);
   }
 });
 
@@ -67,7 +75,7 @@ router.get("/top", async (req, res) => {
           attribute: ["username"],
         },
       ],
-      order: ["upvotes", "DESC"],
+      order: [["upvotes", "DESC"]],
     });
 
     //serialize

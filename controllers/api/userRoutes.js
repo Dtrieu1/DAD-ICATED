@@ -1,8 +1,7 @@
 // connections
 const router = require("express").Router();
-
-// -- models
 const User = require("../../models/User");
+
 // create user
 router.post("/", async (req, res) => {
   try {
