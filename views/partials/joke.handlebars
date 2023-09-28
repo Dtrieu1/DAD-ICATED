@@ -1,21 +1,13 @@
 <div class="card border-dark mb-3 jokeCard">
-        <div class="card-header{{user.username}}</div>
-        <div class="card-body text-dark">
-            <h5 class="card-title">{{joke.timestamp}}</h5>
-            <p class="card-text">{{joke.joke}}</p>
-            {{#if vote.vote_value}}
-            <div class="arrowArea upChosen"></div>
-                <button type="button" class="btn upChosen">⬆️ Up</button>
-                <button type="button" class="btn">⬇️ Down</button>
-            {{#if !vote.vote_value}}
-            <div class="arrowArea downChosen"></div>
-                <button type="button" class="btn">⬆️ Up</button>
-                <button type="button" class="btn downChosen">⬇️ Down</button>
-            {{#else}}
-            <div class="arrowArea"></div>
-                <button type="button" class="btn">⬆️ Up</button>
-                <button type="button" class="btn">⬇️ Down</button>
-            {{/if}}
-            <h6 class="card-text">Score: {{tallyVotes joke}}</h6>
-        </div>
-    </div>
+    <div hidden class="jokeId">{{joke.id}}</div>
+  <div class="card-header">{{user.username}}</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title">{{joke.timestamp}}</h5>
+    <p class="card-text jokeText">{{joke.joke}}</p>
+    <div class="arrowArea downChosen"></div>
+    <button type="button" class="btn upVote">⬆️ Up</button>
+    <h6 class="card-text upvoteScore">{{joke.upvotes}}</h6>
+    <button type="button" class="btn downVote">⬇️ Down</button>
+    <h6 class="card-text downvoteScore">{{joke.downvotes}}</h6>
+  </div>
+</div>
