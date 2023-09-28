@@ -5,7 +5,14 @@ const { User, Joke } = require("../models");
 // main page get route
 router.get("/", async (req, res) => {
   try {
+    const userData = await User.findOne({
+      where: [{ user_id: req.session.user_id }],
+    });
+
+    const user = userData.get({ plain: true });
+
     res.render("homepage", {
+      ...user,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
