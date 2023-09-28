@@ -116,6 +116,18 @@ router.get("/top", async (req, res) => {
   }
 });
 
+// signup joke get route
+router.get("/signup", async (req, res) => {
+  try {
+    res.render("signup", {
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+});
+
 // login get route
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {
