@@ -1,6 +1,11 @@
-body {
-  margin: 0px;
-  padding: 0px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#header-row {
+  padding: 0;
 }
 
 img,
@@ -18,4 +23,25 @@ img,
 
 .jokeCard {
   max-width: 35rem;
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 576px) {
+  nav {
+    padding-top: 0.5;
+    padding-bottom: 0.5;
+  }
+  .navbar-brand {
+    margin-left: 80px;
+  }
+  .btn-toolbar {
+    display: flex;
+    justify-content: center;
+  }
+
+  #dadImg {
+    display: none;
+  }
 }
