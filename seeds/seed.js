@@ -1,5 +1,5 @@
 const sequelize = require("../config/connection");
-const { User, Joke, Vote } = require("../models");
+const { User, Joke } = require("../models");
 const tallyVotes = require("../utils/tally");
 
 const userData = require("./userData.json");
@@ -14,7 +14,7 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  // create jokes
+  // create jokes w/ random user id
   for (const joke of jokeData) {
     await Joke.create({
       ...joke,

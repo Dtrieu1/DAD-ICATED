@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
 });
 
 // put route to upvote
-router.post("/up/:id", async (req, res) => {
+router.put("/up/:id", async (req, res) => {
   try {
     const updateJoke = await Joke.increment(
       { upvote: 1 },
@@ -40,7 +40,7 @@ router.post("/up/:id", async (req, res) => {
 });
 
 // put route to downvote
-router.post("/down/:id", async (req, res) => {
+router.put("/down/:id", async (req, res) => {
   try {
     const updateJoke = await Joke.decrement(
       { downvote: 1 },
