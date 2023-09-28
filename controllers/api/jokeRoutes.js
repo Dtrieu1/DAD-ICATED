@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
-});
+})
 
 // put route to upvote
 router.put("/up/:id", async (req, res) => {
