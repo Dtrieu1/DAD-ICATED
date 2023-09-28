@@ -15,13 +15,13 @@ router.post("/", async (req, res) => {
     res.status(400).json(err);
     console.log(err);
   }
-})
+});
 
 // put route to upvote
 router.put("/up/:id", async (req, res) => {
   try {
     const updateJoke = await Joke.increment(
-      { upvote: 1 },
+      { upvotes: 1 },
       {
         where: {
           id: req.params.id,
@@ -35,8 +35,8 @@ router.put("/up/:id", async (req, res) => {
     }
 
     res.status(200).json(updateJoke);
-  } catch {
-    res.status(400).json(err);
+  } catch (err) {
+    res.status(400).json({ message: "An error occurred" });
     console.log(err);
   }
 });
@@ -45,7 +45,7 @@ router.put("/up/:id", async (req, res) => {
 router.put("/down/:id", async (req, res) => {
   try {
     const updateJoke = await Joke.decrement(
-      { downvote: 1 },
+      { downvotes: 1 },
       {
         where: {
           id: req.params.id,

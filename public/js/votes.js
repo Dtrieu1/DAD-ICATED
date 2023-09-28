@@ -1,37 +1,56 @@
 const upvoteHandler = async (event) => {
   event.preventDefault();
 
-  const jokeId = document.querySelector(".jokeId");
-  const uppedJoke = document.querySelector(".upvoteScore");
+  const thisJoke = event.currentTarget;
+  let jokeId = thisJoke.querySelector("#jokeId").textContent;
+  let uppedJoke = thisJoke.querySelector("#upvoteScore").textContent;
+  console.log(jokeId);
+  console.log(uppedJoke);
 
-  const response = await fetch("/api/jokes/up/:id", {
+  const response = await fetch(`/api/jokes/up/${jokeId}`, {
     method: "PUT",
-    body: JSON.stringify({ jokeId }),
+    body: JSON.stringify({ id: jokeId }),
     headers: { "Content-Type": "application/json" },
   });
 
   if (response.ok) {
-    uppedJoke = document.querySelector(".upvoteScore").value++;
+    location.reload();
+    // let currentCount = parseInt(uppedJoke);
+    // uppedJoke = currentCount++;
   }
 };
 
 const downvoteHandler = async (event) => {
   event.preventDefault();
 
-  const jokeId = document.querySelector(".jokeId");
-  const downedJoke = document.querySelector(".downvoteScore");
+  const thisJoke = event.currentTarget;
+  let jokeId = thisJoke.querySelector("#jokeId").textContent;
+  let downedJoke = thisJoke.querySelector("#downvoteScore").textContent;
+  console.log(jokeId);
+  console.log(downedJoke);
 
-  const response = await fetch("/api/jokes/down/:id", {
+  const response = await fetch(`/api/jokes/down/${jokeId}`, {
     method: "PUT",
-    body: JSON.stringify({ jokeId }),
+    body: JSON.stringify({ id: jokeId }),
     headers: { "Content-Type": "application/json" },
   });
 
   if (response.ok) {
-    downedJoke = document.querySelector(".downvoteScore").value--;
+    location.reload();
+    // let currentCount = parseInt(downedJoke);
+    // downedJoke = currentCount--;
   }
 };
 
-document.querySelector(".upVote").addEventListener("click", upvoteHandler);
-
-document.querySelector(".downVote").addEventListener("click", downvoteHandler);
+document.addEventListener("DOMContentLoaded", function () {
+  const cards = document.querySelectorAll("#jokeCard");
+  cards.forEach((card) => {
+    card.addEventListener("click", function (event) {
+      if (event.target.matches("#upVote")) {
+        upvoteHandler(event);
+      } else if (event.target.matches("#downVote")) {
+        downvoteHandler(event);
+      }
+    });
+  });
+});

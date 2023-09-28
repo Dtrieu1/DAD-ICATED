@@ -1,13 +1,14 @@
-<div class="card border-dark mb-3 jokeCard">
-    <div hidden class="jokeId">{{id}}</div>
+<div class="card border-dark mb-3" id="jokeCard">
+  <div hidden id="jokeId">{{id}}</div>
   <div class="card-header">{{user.username}}</div>
   <div class="card-body text-dark">
     <h5 class="card-title">{{format_date createdAt}}</h5>
     <p class="card-text jokeText">{{joke}}</p>
-    <div class="arrowArea downChosen"></div>
-    <button type="button" class="btn upVote">⬆️ Up</button>
-    <h6 class="card-text upvoteScore">{{upvotes}}</h6>
-    <button type="button" class="btn downVote">⬇️ Down</button>
-    <h6 class="card-text downvoteScore">{{downvotes}}</h6>
+    <button type="button" id="upVote" class="btn">⬆️ Up
+      <span id="upvoteScore" class="badge bg-white">{{upvotes}}</span>
+    </button>
+    <button type="button" id="downVote" class="btn">⬇️ Down
+      <span id="downvoteScore" class="badge bg-white">{{downvotes}}</span>
+    </button>
   </div>
 </div>
