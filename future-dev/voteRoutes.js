@@ -1,6 +1,6 @@
 // connections
 const router = require("express").Router();
-const { Joke, Vote } = require("../../models");
+const { Joke, Vote } = require("../models");
 
 // create upvote
 router.post("/up", async (req, res) => {
