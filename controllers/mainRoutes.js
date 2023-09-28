@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
   try {
    
     res.render("homepage", {
-      logged_in: req.session.logged_in,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -25,6 +25,7 @@ router.get("/submit", async (req, res) => {
     res.render("submitAJoke", {
       user,
       logged_in: req.session.logged_in,
+      username: req.session.username,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -55,11 +56,11 @@ router.get("/random", async (req, res) => {
 
     //serialize
     const joke = jokeData.get({ plain: true });
-
+    console.log(joke);
     // pass into template
     res.render("homepage", {
       ...joke,
-      logged_in: req.session.logged_in,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -87,7 +88,7 @@ router.get("/new", async (req, res) => {
     // pass into template
     res.render("newJokes", {
       jokes,
-      logged_in: req.session.logged_in,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -114,7 +115,7 @@ router.get("/top", async (req, res) => {
     // pass into template
     res.render("topJokes", {
       jokes,
-      logged_in: req.session.logged_in,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -126,7 +127,7 @@ router.get("/top", async (req, res) => {
 router.get("/signup", async (req, res) => {
   try {
     res.render("signup", {
-      logged_in: req.session.logged_in,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -136,7 +137,7 @@ router.get("/signup", async (req, res) => {
 
 // login get route
 router.get("/login", (req, res) => {
-  if (req.session.logged_in) {
+  if (req.session.loggedIn) {
     res.redirect("/");
     return;
   }

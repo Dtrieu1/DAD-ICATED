@@ -19,4 +19,6 @@ const submitHandler = async (event) => {
 
 document
   .querySelector(".submit-form")
+
   .addEventListener("submit", submitHandler);
+
