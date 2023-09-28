@@ -26,10 +26,9 @@
                                     Posts</button></a>
                         </div>
                         <div>
-
-                            {{#if logged_in}}
-                              <a href="/submit"><button type="button" class="btn btn-success" role="button" >Submit a Post!</button></a>
-
+                            {{#if loggedIn}}
+                            <a href="/submit"><button type="button" class="btn btn-success" role="button">Submit a
+                                    Post!</button></a>
                             <h1 class="username">{{user.username}}</h1>
                             <button id="logout">Logout</button>
                             {{else}}
@@ -43,28 +42,22 @@
         </div>
         <div class="row">
             <div class="col-sm-3">
-
-                <img src="/pictures/Dad_Child_Photo_Meal.jpg" alt=”Image”>
-                <img src="/pictures/Dad_Sport.jpg" alt="Dad_Sport">
-
+                <img src="./pictures/Dad_Child_Photo_Meal.jpg" alt=”Image”>
+                <img src="./pictures/Dad_Sport.jpg" alt="Dad_Sport">
             </div>
             <div class="col-sm" id="main_body">
                 {{{body}}}
             </div>
             <div class="col-sm-3">
-
-                <img src="/pictures/Dad_Child_Photo.jpg" alt=”Image”>
-                <img src="/pictures/Dad_kid.jpg" alt="Dad_kid">
-
+                <img src="./pictures/Dad_Child_Photo.jpg" alt=”Image”>
+                <img src="./pictures/Dad_kid.jpg" alt="Dad_kid">
             </div>
         </div>
 
     </div>
     </div>
-
-    {{#if logged_in}}
-    <script src="/js/logout.js"></script>
-
+    {{#if loggedIn}}
+    <script src="./js/logout.js"></script>
     {{/if}}
 </body>
 

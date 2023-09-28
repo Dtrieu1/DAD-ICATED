@@ -2,18 +2,12 @@
 
 <form class="submit-form">
   <div class="form-group">
-    <label for="username">Username: {{user.username}}</label>
+    <label for="username">Username: {{username}}</label>
   </div>
   <div class="mb-3">
     <label for="jokeSubmission" class="form-label">Dad joke:</label>
-    <textarea
-      class="form-control"
-      id="jokeSubmission"
-      rows="5"
-      placeholder="Enter your joke here"
-    ></textarea>
+    <textarea class="form-control" id="jokeSubmission" rows="5" placeholder="Enter your joke here"></textarea>
   </div>
   <button type="submit" class="btn btn-success">Submit your joke and confirm!</button>
 </form>
-
-<script src="/js/submit.js"></script>
+<script src="./js/submit.js"></script>
