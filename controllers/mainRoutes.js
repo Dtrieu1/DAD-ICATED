@@ -5,6 +5,7 @@ const { User, Joke } = require("../models");
 // main page get route
 router.get("/", async (req, res) => {
   try {
+   
     res.render("homepage", {
       loggedIn: req.session.loggedIn,
     });
@@ -17,8 +18,13 @@ router.get("/", async (req, res) => {
 // submit joke get route
 router.get("/submit", async (req, res) => {
   try {
+    console.log(req.session.user_id);
+    const userData = await User.findOne({ where: { id: req.session.user_id } });
+    const user = userData.get({ plain: true });
+    console.log(user);
     res.render("submitAJoke", {
-      loggedIn: req.session.loggedIn,
+      user,
+      logged_in: req.session.logged_in,
       username: req.session.username,
     });
   } catch (err) {
@@ -78,7 +84,7 @@ router.get("/new", async (req, res) => {
 
     //serialize
     const jokes = jokeData.map((joke) => joke.get({ plain: true }));
-
+    console.log(jokes);
     // pass into template
     res.render("newJokes", {
       jokes,
