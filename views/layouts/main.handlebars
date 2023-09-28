@@ -27,8 +27,9 @@
                         </div>
                         <div>
 
-                            {{#if logged_in}}
-                              <a href="/submit"><button type="button" class="btn btn-success" role="button" >Submit a Post!</button></a>
+                            {{#if loggedIn}}
+                            <a href="/submit"><button type="button" class="btn btn-success" role="button">Submit a
+                                    Post!</button></a>
 
                             <h1 class="username">{{user.username}}</h1>
                             <button id="logout">Logout</button>
@@ -62,7 +63,7 @@
     </div>
     </div>
 
-    {{#if logged_in}}
+    {{#if loggedIn}}
     <script src="/js/logout.js"></script>
 
     {{/if}}

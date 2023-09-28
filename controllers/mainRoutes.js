@@ -24,7 +24,7 @@ router.get("/submit", async (req, res) => {
     console.log(user);
     res.render("submitAJoke", {
       user,
-      logged_in: req.session.logged_in,
+      loggedIn: req.session.loggedIn,
       username: req.session.username,
     });
   } catch (err) {
