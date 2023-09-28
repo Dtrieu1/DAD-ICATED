@@ -1,95 +1,6 @@
 // connections
 const router = require("express").Router();
-const { User, Joke, Vote } = require("../../models");
-
-// random joke get route
-router.get("/random", async (req, res) => {
-  // random user id
-  const users = await User.findAll();
-  const { id: randomUserId } = users[Math.floor(Math.random() * users.length)];
-
-  try {
-    // get one random joke, join with user and vote data
-    const jokeData = await Joke.findOne({
-      where: [
-        {
-          user_id: randomUserId,
-        },
-      ],
-      include: [
-        {
-          model: User,
-          attribute: ["username"],
-        },
-      ],
-    });
-
-    //serialize
-    const joke = jokeData.get({ plain: true });
-
-    // pass into template
-    res.render("homepage", {
-      ...joke,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-    console.log(err);
-  }
-});
-
-// all jokes get route -- newest
-router.get("/new", async (req, res) => {
-  try {
-    // get all jokes sorted by creation, join with user and vote data
-    const jokeData = await Joke.findAll({
-      include: [
-        {
-          model: User,
-          attribute: ["username"],
-        },
-      ],
-      order: [["createdAt", "DESC"]],
-    });
-
-    //serialize
-    const jokes = jokeData.map((joke) => joke.get({ plain: true }));
-
-    // pass into template
-    res.render("newJokes", {
-      jokes,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// all jokes get route -- top voted
-router.get("/top", async (req, res) => {
-  try {
-    const jokeData = await Joke.findAll({
-      include: [
-        {
-          model: User,
-          attribute: ["username"],
-        },
-      ],
-      order: [["upvotes", "DESC"]],
-    });
-
-    //serialize
-    const jokes = jokeData.map((joke) => joke.get({ plain: true }));
-
-    // pass into template
-    res.render("topJokes", {
-      jokes,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+const { User, Joke } = require("../../models");
 
 // create joke post route
 router.post("/", async (req, res) => {
@@ -101,6 +12,52 @@ router.post("/", async (req, res) => {
 
     res.status(200).json(newJoke);
   } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// put route to upvote
+router.put("/up/:id", async (req, res) => {
+  try {
+    const updateJoke = await Joke.increment(
+      { upvote: 1 },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+
+    if (!updateJoke) {
+      res.status(400).json({ message: "Unable to vote on this joke" });
+      return;
+    }
+
+    res.status(200).json(updateJoke);
+  } catch {
+    res.status(400).json(err);
+  }
+});
+
+// put route to downvote
+router.put("/down/:id", async (req, res) => {
+  try {
+    const updateJoke = await Joke.decrement(
+      { downvote: 1 },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+
+    if (!updateJoke) {
+      res.status(400).json({ message: "Unable to vote on this joke" });
+      return;
+    }
+
+    res.status(200).json(updateJoke);
+  } catch {
     res.status(400).json(err);
   }
 });
