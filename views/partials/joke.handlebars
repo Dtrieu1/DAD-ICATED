@@ -1,13 +1,13 @@
 <div class="card border-dark mb-3 jokeCard">
-    <div hidden class="jokeId">{{joke.id}}</div>
+    <div hidden class="jokeId">{{id}}</div>
   <div class="card-header">{{user.username}}</div>
   <div class="card-body text-dark">
-    <h5 class="card-title">{{joke.timestamp}}</h5>
-    <p class="card-text jokeText">{{joke.joke}}</p>
+    <h5 class="card-title">{{format_date createdAt}}</h5>
+    <p class="card-text jokeText">{{joke}}</p>
     <div class="arrowArea downChosen"></div>
     <button type="button" class="btn upVote">⬆️ Up</button>
-    <h6 class="card-text upvoteScore">{{joke.upvotes}}</h6>
+    <h6 class="card-text upvoteScore">{{upvotes}}</h6>
     <button type="button" class="btn downVote">⬇️ Down</button>
-    <h6 class="card-text downvoteScore">{{joke.downvotes}}</h6>
+    <h6 class="card-text downvoteScore">{{downvotes}}</h6>
   </div>
 </div>
