@@ -15,6 +15,7 @@ router.post("/", async (req, res) => {
     });
   } catch (err) {
     res.status(400).json(err);
+    console.log(err);
   }
 });
 
@@ -47,6 +48,7 @@ router.post("/login", async (req, res) => {
     });
   } catch (err) {
     res.status(400).json(err);
+    console.log(err);
   }
 });
 
