@@ -19,4 +19,24 @@
         "joke": "My wife said I should do lunges to stay in shape. That would be a big step forward.",
         "user_id": 5
     }
+    {
+        "joke": "Why don't scientists trust atoms? Because they make up everything!",
+        "user_id":6 
+    }
+    {
+        "joke": "Did you hear about the kidnapping at the playground? They woke up.",
+        "user_id": 7
+    }
+    {
+        "joke": "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+        "user_id": 8
+    }
+    {
+        "joke": "What did the ocean say to the beach? Nothing, it just waved.",
+        "user_id": 9
+    }
+    {
+        "joke": "How does a penguin build its house? Igloos it together!",
+        "user_id": 10
+    }
 ]
