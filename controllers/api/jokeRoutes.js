@@ -13,6 +13,7 @@ router.post("/", async (req, res) => {
     res.status(200).json(newJoke);
   } catch (err) {
     res.status(400).json(err);
+    console.log(err);
   }
 })
 
@@ -36,6 +37,7 @@ router.put("/up/:id", async (req, res) => {
     res.status(200).json(updateJoke);
   } catch {
     res.status(400).json(err);
+    console.log(err);
   }
 });
 
@@ -59,6 +61,7 @@ router.put("/down/:id", async (req, res) => {
     res.status(200).json(updateJoke);
   } catch {
     res.status(400).json(err);
+    console.log(err);
   }
 });
 

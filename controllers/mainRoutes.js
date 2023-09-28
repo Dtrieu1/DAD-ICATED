@@ -10,6 +10,19 @@ router.get("/", async (req, res) => {
     });
   } catch (err) {
     res.status(500).json(err);
+    console.log(err);
+  }
+});
+
+// submit joke get route
+router.get("/submit", async (req, res) => {
+  try {
+    res.render("submitAJoke", {
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
   }
 });
 
@@ -17,14 +30,13 @@ router.get("/", async (req, res) => {
 router.get("/random", async (req, res) => {
   // random user id
   const users = await User.findAll();
-  const { id: randomUserId } = users[Math.floor(Math.random() * users.length)];
 
   try {
     // get one random joke, join with user and vote data
     const jokeData = await Joke.findOne({
       where: [
         {
-          user_id: randomUserId,
+          user_id: users[Math.floor(Math.random() * users.length)].id,
         },
       ],
       include: [
@@ -73,6 +85,7 @@ router.get("/new", async (req, res) => {
     });
   } catch (err) {
     res.status(500).json(err);
+    console.log(err);
   }
 });
 
@@ -99,12 +112,12 @@ router.get("/top", async (req, res) => {
     });
   } catch (err) {
     res.status(500).json(err);
+    console.log(err);
   }
 });
 
 // login get route
 router.get("/login", (req, res) => {
-  
   if (req.session.logged_in) {
     res.redirect("/");
     return;
