@@ -19,18 +19,18 @@
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                         <div class="text-left">
 
-                            <button type="button" class="btn btn-dark" role="button" href="/">Home</button>
-                            <button type="button" class="btn btn-dark" role="button" href="/top">Top Posts</button>
-                            <button type="button" class="btn btn-dark" role="button" href="/new">New Posts</button>
+                            <a href="/"><button type="button" class="btn btn-dark" role="button" >Home</button></a>
+                            <a href="/top"><button type="button" class="btn btn-dark" role="button" >Top Posts</button></a>
+                            <a href="/new"><button type="button" class="btn btn-dark" role="button" >New Posts</button></a>
                         </div>
                         <div>
                             {{#if loggedIn}}
-                             <button type="button" class="btn btn-success" role="button" href="/joke">Submit a Post!</button>
-                            <h1 class="username">{{username}}</h1>
+                             <a href="/joke"><button type="button" class="btn btn-success" role="button" >Submit a Post!</button></a>
+                            <h1 class="username">{{user.username}}</h1>
                             <button id="logout">Logout</button>
                             {{else}}
-                            <a href="/login" class="btn-dark">Login/Sign Up</a>
-                            <a class="btn btn-primary" href="/login" role="button">Login/Sign Up</a>
+                            
+                            <a href="/login"><button type="button" class="btn btn-primary" role="button">Login/Sign Up</button></a>
                             {{/if}}
                         </div>
                 </nav>

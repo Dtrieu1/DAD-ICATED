@@ -104,7 +104,6 @@ router.get("/top", async (req, res) => {
 
 // login get route
 router.get("/login", (req, res) => {
-  
   if (req.session.logged_in) {
     res.redirect("/");
     return;
