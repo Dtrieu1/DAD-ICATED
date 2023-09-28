@@ -15,7 +15,7 @@ Joke.init(
     // joke
     joke: {
       allowNull: false,
-      type: DataTypes.STRING, // defines the data type for the joke
+      type: DataTypes.STRING, 
     },
     //upvotes
     upvotes: {
@@ -34,8 +34,8 @@ Joke.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "user", // should match the model name in the User model
-        key: "id", // should match the primary key in the User model
+        model: "user", 
+        key: "id",
       },
     },
   },

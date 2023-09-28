@@ -3,6 +3,6 @@ const userRoutes = require('./userRoutes');
 const jokeRoutes = require('./jokeRoutes');
 
 router.use('/user', userRoutes);
-router.use('/joke', jokeRoutes);
+router.use('/jokes', jokeRoutes);
 
 module.exports = router;
