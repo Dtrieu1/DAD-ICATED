@@ -19,7 +19,7 @@ N/A
 
 ## Usage
 
-The application can be accessed via [Heroku]().
+The application can be accessed via [Heroku](https://dad-icated-6a2b4854840e.herokuapp.com/).
 
 Below are screenshots of the main page, top jokes list, and login / signup
 
