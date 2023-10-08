@@ -1,12 +1,11 @@
 // connections
 const router = require("express").Router();
 const { User, Joke } = require("../models");
-const imgStyle = require("../utils/image")
+const imgStyle = require("../utils/image");
 
 // main page get route
 router.get("/", async (req, res) => {
   try {
-   
     res.render("homepage", {
       loggedIn: req.session.loggedIn,
     });
@@ -37,9 +36,10 @@ router.get("/submit", async (req, res) => {
 // random joke generator
 router.get("/random", async (req, res) => {
   // random user id
-  const users = await User.findAll();
 
   try {
+    const users = await User.findAll();
+
     // get one random joke, join with user and vote data
     const jokeData = await Joke.findOne({
       where: [
@@ -54,9 +54,9 @@ router.get("/random", async (req, res) => {
         },
       ],
     });
-
+    console.log(jokeData)
     //serialize
-    const joke = jokeData.get({ plain: true });
+    const joke = jokeData?jokeData.get({ plain: true }):{joke:""};
     console.log(joke);
     // pass into template
     res.render("homepage", {
