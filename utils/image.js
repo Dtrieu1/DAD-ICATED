@@ -7,7 +7,7 @@ execute().catch(console.error);
 //   return grey.save("./public/pictures/Dad_Kid.jpg");
 // }
 
-const imgStyle = async function execute() {
+async function execute() {
   // get images
   const img1 = await Image.load("./public/pictures/Dad_Kid.jpg");
   const grey = img1.grey();
@@ -22,6 +22,6 @@ const imgStyle = async function execute() {
   //   let grey = newImg.grey();
   //   return grey.save(img[i]);
   // });
-};
+}
 
-module.exports = imgStyle;
+module.exports = { imgStyle: execute };
